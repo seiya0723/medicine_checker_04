@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>医薬品情報</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script src="{% static 'medicine/js/script.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'medicine/css/style.css' %}">
+
+</head>
+<body>
+
+    <header class="bg-primary">
+        <a class="text-white" href="{% url 'medicine:index' %}"><h1>医薬品情報</h1></a>
+    </header>
+
+    
+    <!--ここにSearchViewのパスを-->
+    <form id="search_form" action="{% url 'medicine:search' %}" method="GET">
+
+        <!--Ajaxを使った検索をするので、画面遷移は起こらない。検索したときのチェックと検索ワードは残るため、以下のrequest.GET.XXX を全て削除
+            デフォルトで医薬品名で検索をするので、checked属性を指定しておく。
+        -->
+        <input id="name"        class="chkbox" type="checkbox" name="name"        checked><label class="chk_label" for="name">医薬品名    </label>
+        <input id="effect"      class="chkbox" type="checkbox" name="effect"      ><label class="chk_label" for="effect"     >作用と効果  </label>
+        <input id="caution"     class="chkbox" type="checkbox" name="caution"     ><label class="chk_label" for="caution"    >使用上の注意</label>
+        <input id="dosage"      class="chkbox" type="checkbox" name="dosage"      ><label class="chk_label" for="dosage"     >用法・用量  </label>
+        <input id="side_effect" class="chkbox" type="checkbox" name="side_effect" ><label class="chk_label" for="side_effect">副作用      </label>
+
+        <input id="search_text" type="text" name="search" placeholder="医薬品名" value="">
+        <input id="search_button" class="btn btn-primary" type="button" value="検索">
+    </form>
+
+    <ul id="search_result" class="search_result">
+    </ul>
+
+    <table class="table">
+        <thead class="thead-dark"> 
+            <tr id="table_name">
+                <th>比較項目/薬品名</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="table_effect"     ><td>作用と効果  </td></tr>
+            <tr id="table_caution"    ><td>使用上の注意</td></tr>
+            <tr id="table_dosage"     ><td>用法・用量  </td></tr>
+            <tr id="table_side_effect"><td>副作用      </td></tr>
+        </tbody>
+    </table>
+
+
+</body>
+</html>
+

@@ -1,0 +1,4 @@
+{% for medicine in medicines %}
+<li>{{ medicine.name }} {{ medicine.effect|truncatechars_html:50 }} <button class="btn btn-outline-success stack" value="{{ medicine.id }}">スタック</button></li>
+{% endfor %}
+

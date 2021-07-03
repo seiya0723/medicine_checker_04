@@ -1,0 +1,18 @@
+.chkbox {
+    display:none;
+}
+.chk_label {
+    border:solid 0.2rem deepskyblue;
+    border-radius:0.25rem;
+    padding:0.2rem;
+    cursor:pointer;
+    transition:0.2s;
+}
+input[type="checkbox"].chkbox:checked + .chk_label{
+    background:deepskyblue;
+    transition:0.2s;
+}
+.search_result {
+    max-height:20rem;
+    overflow-y:auto;
+}
